@@ -1,0 +1,83 @@
+// bower:scss
+// endbower
+
+$fontBody: 20px;
+
+// MIXINS
+@mixin font-size($value) {
+  font-size: $value*$fontBody + px;
+  //font-size: ($rem) + rem;
+}
+
+@mixin animation() {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@mixin border-radius($radius1, $radius2, $radius3, $radius4) {
+  -webkit-border-radius: $radius1 $radius2 $radius3 $radius4;
+     -moz-border-radius: $radius1 $radius2 $radius3 $radius4;
+     -o-border-radius: $radius1 $radius2 $radius3 $radius4;
+      -ms-border-radius: $radius1 $radius2 $radius3 $radius4;
+          border-radius: $radius1 $radius2 $radius3 $radius4;
+}
+
+@mixin transition($sec, $mode) {
+  -webkit-transition: $sec+s all;
+  -moz-transition: $sec+s all;
+  -o-transition: $sec+s all;
+  transition: $sec+s all;
+  transition-timing-function: $mode;
+}
+// END MIXINS
+
+* {
+  margin: 0;
+  padding: 0;
+  background-clip: padding-box;  
+  -moz-background-clip: padding;  
+  -webkit-background-clip: padding;
+  outline: none !important;
+}
+
+html, body{
+  height:100%
+}
+
+body {
+  @include font-size(1);
+  position:relative;
+  overflow:hidden;
+  background-color: #34A3DC;
+  font-family: 'Roboto', sans-serif;
+}
+
+.radius-top {
+  @include border-radius(10px, 10px, 0px, 0px);
+}
+
+#player {
+  width: 300px;
+  margin: 200px auto;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  @include border-radius(10px, 10px, 10px, 10px);
+}
+
+#top {
+  background-color: #fff;
+  img {
+    width: 100%;
+  }
+}
+
+#bot {
+  padding: 10px;
+  background-color: #eaeaea;
+  @include border-radius(0px, 0px, 10px, 10px);
+}
+
+ul {
+  list-style:none;
+}
