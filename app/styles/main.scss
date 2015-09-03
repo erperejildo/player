@@ -2,6 +2,7 @@
 // endbower
 
 $fontBody: 20px;
+$activeColor: #10D720;
 
 // MIXINS
 @mixin font-size($value) {
@@ -51,6 +52,7 @@ body {
   position:relative;
   overflow:hidden;
   background-color: #34A3DC;
+  color: #3a3a3a;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -65,14 +67,37 @@ body {
   @include border-radius(10px, 10px, 10px, 10px);
 }
 
-#top {
+.top {
+  position: relative;
   background-color: #fff;
   img {
+    -webkit-filter: grayscale(70%);
+    filter: grayscale(70%);
     width: 100%;
+  }
+  span {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    background-color: #eaeaea;
+    cursor: pointer;
+    padding: 10px;
+    @include border-radius(0px, 10px, 0px, 10px);
+    &:hover {
+      color: #F44336;
+    }
   }
 }
 
-#bot {
+.favourite {
+  img {
+    -webkit-filter: grayscale(0%) !important;
+    filter: grayscale(0%) !important;
+  }
+  color: #F44336;
+}
+
+.bot {
   padding: 10px;
   background-color: #eaeaea;
   @include border-radius(0px, 0px, 10px, 10px);
@@ -80,4 +105,39 @@ body {
 
 ul {
   list-style:none;
+  li:first-child {
+    margin-bottom: 5px;
+  }
+  span {
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+}
+
+#progress {
+  background-color: #ccc;
+  height: 5px;
+  width: 100%;
+  margin: 20px 0;
+  @include border-radius(10px, 10px, 10px, 10px);
+  #bar {
+    background-color: blue;
+    width: 20%;
+    height: 100%;
+    background-color: $activeColor;
+    @include border-radius(10px, 10px, 10px, 10px);
+  }
+}
+
+#controls {
+  overflow: auto;
+  div {
+    cursor: pointer;
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    span:hover, span:active {
+      color: $activeColor;
+    }
+  }
 }

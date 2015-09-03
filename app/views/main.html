@@ -1,10 +1,20 @@
 <div id="player">
-  <div id="top" class="radius-top">
+  <div class="top radius-top" ng-class="{'favourite':favourite == true}">
+  	<span class="icon-heart" ng-click="addFavourite()"></span>
     <img class="radius-top" src="http://www.keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg" />
   </div>
-  <div id="bot">
+  <div class="bot">
     <ul>
-      <li>I want to hold your hand</li>
-      <li>The Beatles</li>
+  		<li><span class="icon-song"></span>{{songs[current].title}}</li>
+      	<li><span class="icon-group"></span>{{songs[current].artist}}</li>
+  	</ul>
+  	<div id="progress">
+  		<div id="bar"></div>
+  	</div>
+  	<div id="controls">
+  		<div><span class="icon-last"></span></div>
+  		<div><span class="icon-play"></span></div>
+  		<div><span class="icon-skip"></span></div>
+  	</div>
   </div>
 </div>
