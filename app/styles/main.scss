@@ -1,7 +1,7 @@
 // bower:scss
 // endbower
 
-$fontBody: 20px;
+$fontBody: 16;
 $activeColor: #10D720;
 
 // MIXINS
@@ -70,10 +70,20 @@ body {
 .top {
   position: relative;
   background-color: #fff;
-  img {
+  .loading {
+    width: 50%;
+    margin: auto;
+    display: block;
+  }
+  .group-img {
     -webkit-filter: grayscale(70%);
     filter: grayscale(70%);
     width: 100%;
+    vertical-align: middle;
+    @include transition(0.5, linear);
+  }
+  img.ng-hide {
+    opacity:0;
   }
   span {
     position: absolute;
@@ -111,31 +121,95 @@ ul {
   span {
     vertical-align: middle;
     margin-right: 10px;
+    cursor: pointer;
   }
+}
+
+audio {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.ng-enter {
+  transform: translateY(-60px);
+  -ms-transform: translateY(-60px);
+  -webkit-transform: translateY(-60px);
+  @include transition(0.5, ease);
+  opacity: 0;
+}
+
+.ng-enter-active {
+  transform: translateY(0);
+  -ms-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  opacity: 1;
+}
+
+#sounds {
+  margin-top: 20px;
+  overflow: auto;
+  span {
+    cursor: pointer;
+    &:active, &:hover {
+      color: $activeColor;  
+    }
+  }
+  div {
+    width: 33.33%;
+    float: left;
+  }
+}
+
+#less {
+  text-align: right;
+}
+
+#sound {
+  text-align: center;
+}
+
+#more {
+  text-align: left;
 }
 
 #progress {
   background-color: #ccc;
   height: 5px;
   width: 100%;
-  margin: 20px 0;
+  margin: 5px 0;
   @include border-radius(10px, 10px, 10px, 10px);
   #bar {
     background-color: blue;
-    width: 20%;
     height: 100%;
+    width: 0%;
     background-color: $activeColor;
     @include border-radius(10px, 10px, 10px, 10px);
   }
 }
 
+#actual-time, #total-time {
+  @include font-size(0.8);
+  margin-bottom: 20px;
+}
+
+#actual-time {
+  float: left;
+}
+
+#total-time {
+  float: right;
+}
+
 #controls {
   overflow: auto;
+  clear: both;
   div {
-    cursor: pointer;
     float: left;
     width: 33.33%;
     text-align: center;
+    span {
+      cursor: pointer;
+    }
     span:hover, span:active {
       color: $activeColor;
     }

@@ -32,15 +32,27 @@
 .icon-last:before {
 	content: "\e602";
 }
-.icon-pause:before {
+.icon-less:before {
 	content: "\e603";
 }
-.icon-play:before {
+.icon-more:before {
 	content: "\e604";
 }
+.icon-pause:before {
+	content: "\e605" !important;
+}
+.icon-play:before {
+	content: "\e606";
+}
 .icon-skip:before {
-	content: "\e605";
+	content: "\e607";
 }
 .icon-song:before {
-	content: "\e606";
+	content: "\e608";
+}
+.icon-mute:before {
+	content: "\e609" !important;
+}
+.icon-sound:before {
+	content: "\e60a";
 }
