@@ -5,7 +5,7 @@ Audio player with AngularJS.
 ## Technologies used
 
 - Scaffolding with Yeoman.
-- Development with AngularJS. Ng-animate for show and hide image with fade.
+- Development with AngularJS.
 - Style with CSS3 and Sass.
 - Grunt as task runner.
 
