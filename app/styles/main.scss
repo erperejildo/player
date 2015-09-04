@@ -69,8 +69,8 @@ body {
 
 .top {
   position: relative;
-  background-color: #fff;    @include transition(0.5, linear);
-
+  background-color: #fff;
+  @include transition(0.5, linear);
   .loading {
     width: 50%;
     margin: auto;

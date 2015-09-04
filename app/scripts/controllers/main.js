@@ -31,6 +31,8 @@ angular.module('playerApp')
 		$scope.favourite = [];
 		$scope.addFavourite = function() {
 			$scope.favourite[$scope.current] = true;
+			// if I would have a backend API I would make a post with the rate +0.5 or -0.5
+			// but I only can save "favourite songs" in this example
 		};
 
 		$scope.playPause = function() {
@@ -68,12 +70,13 @@ angular.module('playerApp')
 			$scope.barWidth = {
 				'width': Math.round(percentageOfSlider) + 'px'
 			};
-			console.log($scope.barWidth);
 		}
 
 		$scope.changeVolume = function (number, direction) {
-			$scope.muted = false;
-			$scope.activeSong.volume = $scope.volume_;
+			if (typeof($scope.volume_) != 'undefined') {
+				$scope.muted = false;
+				$scope.activeSong.volume = $scope.volume_;
+			}
 			if ($scope.activeSong.volume > 0 && direction == 'less') {
 				$scope.activeSong.volume = ($scope.activeSong.volume - (number / 100)).toFixed(2);
 			}
