@@ -9,10 +9,7 @@
  * Main module of the application.
  */
 angular
-	.module('playerApp', [
-		'ngAnimate',
-		'ngSanitize'
-	])
+	.module('playerApp', [])
 	// when load element
 	.directive('audioplayer', function() {
 		return {
