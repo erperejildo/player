@@ -28,8 +28,9 @@ angular.module('playerApp')
 			$scope.imgLoaded = true;
 		};
 
+		$scope.favourite = [];
 		$scope.addFavourite = function() {
-			$scope.favourite = true;
+			$scope.favourite[$scope.current] = true;
 		};
 
 		$scope.playPause = function() {

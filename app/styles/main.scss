@@ -69,7 +69,8 @@ body {
 
 .top {
   position: relative;
-  background-color: #fff;
+  background-color: #fff;    @include transition(0.5, linear);
+
   .loading {
     width: 50%;
     margin: auto;
@@ -85,7 +86,7 @@ body {
   img.ng-hide {
     opacity:0;
   }
-  span {
+  .icon-heart {
     position: absolute;
     z-index: 1;
     right: 0;
@@ -214,4 +215,20 @@ audio {
       color: $activeColor;
     }
   }
+}
+
+@media (max-width: 450px) {
+
+  #player {
+    width: 100%;
+  }
+
+  .top, .radius-top, span, .bot {
+    @include border-radius(0px, 0px, 0px, 0px);
+  }
+
+  .top .icon-heart {
+    @include border-radius(0px, 0px, 0px, 10px);   
+  }
+
 }

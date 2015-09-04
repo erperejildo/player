@@ -1,5 +1,5 @@
 <div id="player">
-  <div class="top radius-top" ng-class="{'favourite':favourite == true}">
+  <div class="top radius-top" ng-class="{'favourite':favourite[current] == true}">
   	<span class="icon-heart" ng-click="addFavourite()"></span>
     <img class="radius-top loading" ng-hide="imgLoaded" src="images/loading.gif" />
     <img class="radius-top group-img" elem-ready="showImg()" ng-show="imgLoaded" ng-src="{{url}}{{songs[current].image}}" />
