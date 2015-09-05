@@ -9,7 +9,9 @@
   		<li><span class="icon-song"></span>{{songs[current].title}}</li>
       	<li><span class="icon-group"></span>{{songs[current].artist}}</li>
   	</ul>
-    <audio id="song" audioplayer playing="updateTime()" preload="auto" type="audio/mp3"></audio>
+    <audio id="song" audioplayer playing="updateTime()" preload="auto">
+      <source type="audio/mpeg">
+    </audio>
     <div id="sounds">
       <div id="less"><span class="icon-less" ng-click="changeVolume(10, 'less')"></span></div>
       <div id="sound"><span class="icon-sound" ng-click="mute()" ng-class="{'icon-mute':muted == true}"></span></div>

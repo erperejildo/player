@@ -14,7 +14,7 @@ angular.module('playerApp')
 		$scope.imgLoaded = false;
 		$scope.seconds = '0:00';
 		$scope.muted = false;
-		$scope.url = 'https://rawgit.com/erperejildo/server/master/songs/';
+		$scope.url = 'https://cdn.rawgit.com/erperejildo/server/master/songs/';
 
 		$http.get('https://raw.githubusercontent.com/erperejildo/server/master/songs/songs.json').
 		then(function(response) {
