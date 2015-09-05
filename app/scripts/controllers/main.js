@@ -20,8 +20,8 @@ angular.module('playerApp')
 		then(function(response) {
 			$scope.songs = response.data;
 			$scope.current = 0;
-			$scope.activeSong = document.getElementById('song');
-			$scope.activeSong.src = $scope.url + $scope.songs[$scope.current].url;
+			$scope.currentSong = document.getElementById('song');
+			$scope.currentSong.src = $scope.url + $scope.songs[$scope.current].url;
 		}, function(error) {});
 
 		$scope.showImg = function() {
@@ -30,58 +30,77 @@ angular.module('playerApp')
 
 		$scope.favourite = [];
 		$scope.addFavourite = function() {
-			$scope.favourite[$scope.current] = true;
 			// if I would have a backend API I would make a post with the rate +0.5 or -0.5
 			// but I only can save "favourite songs" in this example
+			if ($scope.favourite[$scope.current]) {
+				$scope.favourite[$scope.current] = false;
+			} else {
+				$scope.favourite[$scope.current] = true;
+			}
 		};
 
 		$scope.playPause = function() {
-			if ($scope.activeSong.paused) {
+			if ($scope.currentSong.paused) {
 				$scope.playing = true;
-				$scope.activeSong.play();
+				$scope.currentSong.play();
 			} else {
 				$scope.playing = false;
-				$scope.activeSong.pause();
+				$scope.currentSong.pause();
 			}
 		}
+
+		$scope.stop = function() {
+			$scope.currentSong.pause();
+			$scope.playing = false;
+			$scope.barWidth = {
+				'width': '0px'
+			};
+			$scope.seconds = '0:00';
+			$scope.currentSong.currentTime = 0;
+		};
 
 		$scope.mute = function() {
 			if ($scope.muted) {
 				$scope.muted = false;
-				$scope.activeSong.volume = $scope.volume_;
+				$scope.currentSong.volume = $scope.volume_;
 			} else {
 				$scope.muted = true;
-				$scope.volume_ = $scope.activeSong.volume;
-				$scope.activeSong.volume = 0;
+				$scope.volume_ = $scope.currentSong.volume;
+				$scope.currentSong.volume = 0;
 			}
 		};
 
 		$scope.updateTime = function(prueba) {
-			var currentSeconds = (Math.floor($scope.activeSong.currentTime % 60) < 10 ? '0' : '') + Math.floor($scope.activeSong.currentTime % 60);
-			var currentMinutes = Math.floor($scope.activeSong.currentTime / 60);
+			var currentSeconds = (Math.floor($scope.currentSong.currentTime % 60) < 10 ? '0' : '') + Math.floor($scope.currentSong.currentTime % 60);
+			var currentMinutes = Math.floor($scope.currentSong.currentTime / 60);
 
 			$scope.$apply(function(){
 				$scope.seconds = currentMinutes + ":" + currentSeconds;
 			});
 
-			var percentageOfSong = ($scope.activeSong.currentTime / $scope.activeSong.duration);
+			var percentageOfSong = ($scope.currentSong.currentTime / $scope.currentSong.duration);
 			var percentageOfSlider = document.getElementById('progress').offsetWidth * percentageOfSong;
 
 			$scope.barWidth = {
 				'width': Math.round(percentageOfSlider) + 'px'
 			};
+
+			// song finished
+			if ($scope.seconds == $scope.songs[$scope.current].duration) {
+				$scope.stop();
+			}
 		}
 
 		$scope.changeVolume = function (number, direction) {
 			if (typeof($scope.volume_) != 'undefined') {
 				$scope.muted = false;
-				$scope.activeSong.volume = $scope.volume_;
+				$scope.currentSong.volume = $scope.volume_;
 			}
-			if ($scope.activeSong.volume > 0 && direction == 'less') {
-				$scope.activeSong.volume = ($scope.activeSong.volume - (number / 100)).toFixed(2);
+			if ($scope.currentSong.volume > 0 && direction == 'less') {
+				$scope.currentSong.volume = ($scope.currentSong.volume - (number / 100)).toFixed(2);
 			}
-			if ($scope.activeSong.volume < 1 && direction == 'more') {
-				$scope.activeSong.volume = ($scope.activeSong.volume + (number / 100)).toFixed(2);
+			if ($scope.currentSong.volume < 1 && direction == 'more') {
+				$scope.currentSong.volume = ($scope.currentSong.volume + (number / 100)).toFixed(2);
 			}
 		}
 
@@ -91,12 +110,11 @@ angular.module('playerApp')
 
 			var percentage = (e.offsetX / barWidth);
 
-			$scope.activeSong.currentTime = $scope.activeSong.duration * percentage;
+			$scope.currentSong.currentTime = $scope.currentSong.duration * percentage;
 		};
 
 		$scope.changeSong = function(val) {
-			$scope.activeSong.pause();
-			$scope.playing = false;
+			$scope.stop();
 			if (val == 'prev') {
 				if ($scope.current == 0) {
 					$scope.current = $scope.songs.length - 1;
@@ -110,11 +128,7 @@ angular.module('playerApp')
 					$scope.current ++;
 				}
 			}
-			$scope.activeSong.src = $scope.url + $scope.songs[$scope.current].url;
-			$scope.barWidth = {
-				'width': '0px'
-			};
-			$scope.seconds = '0:00';
+			$scope.currentSong.src = $scope.url + $scope.songs[$scope.current].url;
 		};
 
 	});
