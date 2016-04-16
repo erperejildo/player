@@ -17,7 +17,7 @@ To compile the app run `grunt build` and open the `dist` folder.
 
 ## Online project
 
-Visit http://rodriguezdaniel.com/player
+Visit http://rodriguezdaniel.com/apps/player
  <p>
  
 Tested in Chrome, Firefox, Explorer and Opera.
